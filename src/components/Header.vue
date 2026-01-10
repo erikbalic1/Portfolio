@@ -18,7 +18,6 @@
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -44,7 +43,6 @@ export default {
       navLinks: [
         { text: 'Home', href: '#home' },
         { text: 'About', href: '#about' },
-        { text: 'Skills', href: '#skills' },
         { text: 'Projects', href: '#projects' },
         { text: 'Contact', href: '#contact' }
       ]
@@ -62,14 +60,20 @@ export default {
 @import '../assets/styles/variables.scss';
 
 .header {
-  background-color: rgba(26, 26, 26, 0.2);
+  background-color: rgba(26, 26, 26, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: $spacing-medium $spacing-large;
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 9999;
+
+  @media (max-width: $breakpoint-mobile) {
+    background-color: rgba(26, 26, 26, 0.95);
+  }
 
   .nav {
     display: flex;
@@ -82,7 +86,8 @@ export default {
       color: white;
       font-size: $font-size-large;
       font-weight: bold;
-      z-index: 1001;
+      z-index: 10001;
+      position: relative;
 
       .highlight {
         color: $secondary-color;
@@ -132,8 +137,9 @@ export default {
       display: none;
       flex-direction: column;
       cursor: pointer;
-      z-index: 1001;
+      z-index: 10001;
       gap: 5px;
+      position: sticky;
 
       @media (max-width: $breakpoint-mobile) {
         display: flex;
@@ -143,21 +149,23 @@ export default {
         width: 25px;
         height: 3px;
         background-color: white;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         border-radius: 3px;
+        transform-origin: center;
       }
 
       &.active {
         span:nth-child(1) {
-          transform: rotate(45deg) translate(8px, 8px);
+          transform: rotate(45deg) translateY(11px);
         }
 
         span:nth-child(2) {
+          transform: scaleX(0);
           opacity: 0;
         }
 
         span:nth-child(3) {
-          transform: rotate(-45deg) translate(7px, -7px);
+          transform: rotate(-45deg) translateY(-11px);
         }
       }
     }
@@ -168,12 +176,18 @@ export default {
       top: 0;
       left: -100%;
       width: 70%;
+      max-width: 300px;
       height: 100vh;
       background-color: rgba(26, 26, 26, 0.98);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       transition: left 0.4s ease;
-      padding-top: 80px;
+      padding-top: 100px;
+      z-index: 9998;
+
+      @media (max-width: $breakpoint-mobile) {
+        display: block;
+      }
 
       &.open {
         left: 0;
@@ -186,12 +200,11 @@ export default {
         li {
           opacity: 0;
           transform: translateX(-20px);
-          animation: fadeInSlide 0.5s ease forwards;
 
           a {
             display: block;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             padding: $spacing-medium 0;
             position: relative;
 
@@ -213,6 +226,14 @@ export default {
             }
           }
         }
+
+        &.open li {
+          animation: fadeInSlide 0.5s ease forwards;
+        }
+      }
+
+      &.open .mobile-nav-links li {
+        animation: fadeInSlide 0.5s ease forwards;
       }
     }
   }
