@@ -19,10 +19,11 @@ export default {
 @import '../assets/styles/variables.scss';
 
 .footer {
+  flex-shrink: 0;
   background-color: $primary-color;
   color: white;
   text-align: center;
   padding: $spacing-large;
-  margin-top: $spacing-large;
+  margin-top: auto;
 }
 </style>

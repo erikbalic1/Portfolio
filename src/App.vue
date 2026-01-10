@@ -1,13 +1,24 @@
 <template>
   <div id="app">
-    <h1>Portfolio</h1>
-    <p>Welcome to my portfolio website</p>
+    <Header />
+    <main class="main-content">
+      <h1>Portfolio</h1>
+      <p>Welcome to my portfolio website</p>
+    </main>
+    <Footer />
   </div>
 </template>
 
 <script>
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Header,
+    Footer
+  }
 }
 </script>
 
@@ -16,8 +27,15 @@ export default {
 
 #app {
   font-family: $font-family;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1 0 auto;
   text-align: center;
-  color: $text-color;
-  margin-top: 60px;
+  margin-top: 80px;
+  padding: $spacing-large;
 }
 </style>
