@@ -2,7 +2,7 @@
   <div id="app">
     <Header />
     <main class="main-content">
-      <h1>Portfolio</h1>
+      <h1>balicerik</h1>
       <p>Welcome to my portfolio website</p>
     </main>
     <Footer />

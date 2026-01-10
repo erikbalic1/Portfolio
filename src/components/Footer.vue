@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <p>&copy; {{ currentYear }} Portfolio. All rights reserved.</p>
+    <p>&copy; {{ currentYear }} balicerik. All rights reserved.</p>
   </footer>
 </template>
 
@@ -20,7 +20,9 @@ export default {
 
 .footer {
   flex-shrink: 0;
-  background-color: $primary-color;
+  background-color: rgba(26, 26, 26, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: white;
   text-align: center;
   padding: $spacing-large;
