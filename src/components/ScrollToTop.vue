@@ -60,7 +60,7 @@ export default {
   justify-content: center;
   box-shadow: 0 4px 12px rgba(78, 204, 163, 0.4);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 9000;
+  z-index: 10000;
 
   &:hover {
     transform: translateY(-5px);

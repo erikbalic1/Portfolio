@@ -32,6 +32,11 @@
 </template>
 
 <script>
+import WheelWiseImg from '../assets/styles/photo/WheelWise.png'
+import ReserveITImg from '../assets/styles/photo/ReserveIT.png'
+import PortfolioImg from '../assets/styles/photo/Portfolio.png'
+import WorldOfWordsImg from '../assets/styles/photo/WorldOfWords.png'
+
 export default {
   name: 'Projects',
   data() {
@@ -40,7 +45,7 @@ export default {
         {
           title: 'Thesis Work: WheelWise',
           description: 'My thesis work for the Faculty of Informatics at the University of Debrecen. A web application based on car selling and AI advising.',
-          image: 'src/assets/styles/photo/WheelWise.png',
+          image: WheelWiseImg,
           link: '#',
           github: 'https://github.com/erikbalic1/WheelWise',
           tags: ['React.js', 'Node.js', 'MongoDB']
@@ -48,7 +53,7 @@ export default {
         {
           title: 'ReserveIT',
           description: 'A real-time reservation system for restaurants with user authentication and admin panel made for an university assignment for Web Development course.',
-          image: 'src/assets/styles/photo/ReserveIT.png',
+          image: ReserveITImg,
           link: '#',
           github: 'https://github.com/erikbalic1/ReserveIT',
           tags: ['React.js', 'Node.js', 'MongoDB']
@@ -56,7 +61,7 @@ export default {
         {
           title: 'Portfolio Website',
           description: 'Modern and responsive portfolio website with smooth animations, where I showcase my projects and skills.',
-          image: 'src/assets/styles/photo/Portfolio.png',
+          image: PortfolioImg,
           link: '#',
           github: 'https://github.com/erikbalic1/Portfolio',
           tags: ['Vue.js', 'SCSS', 'AOS']
@@ -64,7 +69,7 @@ export default {
         {
           title: 'World of Words',
           description: 'Group project for the Software Methodology course, on which I have done the front end side. A vocabulary learning web application with spaced repetition.',
-          image: 'src/assets/styles/photo/WorldOfWords.png',
+          image: WorldOfWordsImg,
           link: '#',
           github: 'https://github.com/erikbalic1/World-Of-Words',
           tags: ['React.js', 'SpringBoot', 'MongoDB']
