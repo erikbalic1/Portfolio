@@ -2,8 +2,8 @@
   <section id="home" class="hero">
     <div class="hero-content" data-aos="fade-up">
       <div class="text-content" data-aos="fade-right" data-aos-delay="200">
-        <h1 class="name">balic<span class="highlight">erik</span></h1>
-        <p class="title">Full Stack Developer</p>
+        <h1 class="name">Hi, my name is <span class="highlight">Erik</span></h1>
+        <p class="title">Computer Science BSc Student</p>
         <p class="bio">Passionate about creating beautiful and functional web experiences</p>
         <a href="#contact" class="cta-button" data-aos="fade-up" data-aos-delay="400">Get In Touch</a>
       </div>
@@ -106,6 +106,7 @@ export default {
         width: 400px;
         height: 3px;
         background: linear-gradient(90deg, transparent, $secondary-color, transparent);
+        z-index: 3;
 
         @media (max-width: $breakpoint-mobile) {
           width: 280px;
@@ -116,11 +117,28 @@ export default {
         width: 400px;
         height: 400px;
         border-radius: 50%;
-        overflow: hidden;
+        overflow: visible;
         border: 5px solid $secondary-color;
         background-color: $secondary-color;
         box-shadow: 0 10px 40px rgba(78, 204, 163, 0.2);
         animation: morphing 8s ease-in-out infinite;
+        position: relative;
+        z-index: 1;
+
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: -3px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100%;
+          height: 110%;
+          background-image: url('../assets/styles/photo/Erik no bg 2.png');
+          background-size: contain;
+          background-position: center bottom;
+          background-repeat: no-repeat;
+          z-index: 2;
+        }
 
         @media (max-width: $breakpoint-mobile) {
           width: 280px;

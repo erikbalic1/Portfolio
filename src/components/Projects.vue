@@ -9,7 +9,7 @@
           <div class="project-image">
             <img :src="project.image" :alt="project.title" />
             <div class="project-overlay">
-              <a :href="project.link" class="project-link" target="_blank">View Project</a>
+              <a :href="project.link" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a>
             </div>
           </div>
           <div class="project-content">
@@ -18,6 +18,12 @@
             <div class="project-tags">
               <span v-for="(tag, i) in project.tags" :key="i" class="tag">{{ tag }}</span>
             </div>
+            <a :href="project.github" class="github-button" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              View on GitHub
+            </a>
           </div>
         </div>
       </div>
@@ -32,32 +38,36 @@ export default {
     return {
       projects: [
         {
-          title: 'E-Commerce Platform',
-          description: 'A full-stack e-commerce solution with payment integration and admin dashboard.',
-          image: 'https://via.placeholder.com/400x300',
+          title: 'Thesis Work: WheelWise',
+          description: 'My thesis work for the Faculty of Informatics at the University of Debrecen. A web application based on car selling and AI advising.',
+          image: 'src/assets/styles/photo/WheelWise.png',
           link: '#',
-          tags: ['Vue.js', 'Node.js', 'MongoDB']
+          github: 'https://github.com/erikbalic1/WheelWise',
+          tags: ['React.js', 'Node.js', 'MongoDB']
         },
         {
-          title: 'Social Media App',
-          description: 'Real-time social networking platform with chat and notifications.',
-          image: 'https://via.placeholder.com/400x300',
+          title: 'ReserveIT',
+          description: 'A real-time reservation system for restaurants with user authentication and admin panel made for an university assignment for Web Development course.',
+          image: 'src/assets/styles/photo/ReserveIT.png',
           link: '#',
-          tags: ['React', 'Firebase', 'WebSockets']
+          github: 'https://github.com/erikbalic1/ReserveIT',
+          tags: ['React.js', 'Node.js', 'MongoDB']
         },
         {
           title: 'Portfolio Website',
-          description: 'Modern and responsive portfolio website with smooth animations.',
-          image: 'https://via.placeholder.com/400x300',
+          description: 'Modern and responsive portfolio website with smooth animations, where I showcase my projects and skills.',
+          image: 'src/assets/styles/photo/Portfolio.png',
           link: '#',
+          github: 'https://github.com/erikbalic1/Portfolio',
           tags: ['Vue.js', 'SCSS', 'AOS']
         },
         {
-          title: 'Task Management',
-          description: 'Collaborative task management tool with team features.',
-          image: 'https://via.placeholder.com/400x300',
+          title: 'World of Words',
+          description: 'Group project for the Software Methodology course, on which I have done the front end side. A vocabulary learning web application with spaced repetition.',
+          image: 'src/assets/styles/photo/WorldOfWords.png',
           link: '#',
-          tags: ['Vue.js', 'Express', 'PostgreSQL']
+          github: 'https://github.com/erikbalic1/World-Of-Words',
+          tags: ['React.js', 'SpringBoot', 'MongoDB']
         }
       ]
     }
@@ -100,6 +110,7 @@ export default {
     border: 1px solid rgba(78, 204, 163, 0.1);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    cursor: pointer;
 
     &::after {
       content: '';
@@ -111,6 +122,7 @@ export default {
       background: radial-gradient(circle, rgba(78, 204, 163, 0.1) 0%, transparent 70%);
       opacity: 0;
       transition: opacity 0.4s ease;
+      pointer-events: none;
     }
 
     &:hover {
@@ -173,6 +185,8 @@ export default {
 
     .project-content {
       padding: 1.5rem;
+      position: relative;
+      z-index: 1;
 
       h3 {
         font-size: 1.5rem;
@@ -190,6 +204,7 @@ export default {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
+        margin-bottom: $spacing-medium;
 
         .tag {
           background-color: rgba(78, 204, 163, 0.2);
@@ -198,6 +213,34 @@ export default {
           border-radius: 1rem;
           font-size: 0.75rem;
           border: 1px solid rgba(78, 204, 163, 0.3);
+        }
+      }
+
+      .github-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        background-color: $secondary-color;
+        color: $primary-color;
+        border: 1px solid $secondary-color;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        z-index: 10;
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+
+        &:hover {
+          background-color: transparent;
+          color: $secondary-color;
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(78, 204, 163, 0.3);
         }
       }
     }
