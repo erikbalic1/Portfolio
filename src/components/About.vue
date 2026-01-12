@@ -89,7 +89,8 @@ export default {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 4rem;
-    color: $text-color;
+    color: var(--text-color);
+    transition: color 0.3s ease;
 
     @media (max-width: $breakpoint-mobile) {
       font-size: 2rem;
@@ -103,11 +104,12 @@ export default {
   }
 
   .about-card {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--card-bg);
     padding: 2rem;
     border-radius: 1rem;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(78, 204, 163, 0.1);
+    border: 1px solid var(--card-border);
+    transition: all 0.3s ease;
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
@@ -185,14 +187,16 @@ export default {
       }
 
       h4 {
-        color: $text-color;
+        color: var(--text-color);
         margin-bottom: 0.25rem;
+        transition: color 0.3s ease;
       }
 
       .company,
       .school {
-        color: rgba(224, 224, 224, 0.7);
+        color: var(--text-secondary);
         font-size: 0.9rem;
+        transition: color 0.3s ease;
       }
 
       .date {

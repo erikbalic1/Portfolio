@@ -70,9 +70,10 @@ export default {
 
       .bio {
         font-size: 1.125rem;
-        color: rgba(224, 224, 224, 0.8);
+        color: var(--text-secondary);
         margin-bottom: $spacing-large;
         line-height: 1.6;
+        transition: color 0.3s ease;
       }
 
       .cta-button {

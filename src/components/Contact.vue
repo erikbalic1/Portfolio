@@ -79,6 +79,11 @@ export default {
 .contact {
   padding: 5rem $spacing-large;
   background-color: rgba(255, 255, 255, 0.02);
+  transition: background-color 0.3s ease;
+
+  :root.light & {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
 
   .container {
     max-width: 1200px;
@@ -89,7 +94,8 @@ export default {
     font-size: 3rem;
     text-align: center;
     margin-bottom: $spacing-medium;
-    color: $text-color;
+    color: var(--text-color);
+    transition: color 0.3s ease;
 
     @media (max-width: $breakpoint-mobile) {
       font-size: 2rem;
@@ -98,9 +104,10 @@ export default {
 
   .section-subtitle {
     text-align: center;
-    color: rgba(224, 224, 224, 0.7);
+    color: var(--text-secondary);
     font-size: 1.125rem;
     margin-bottom: 4rem;
+    transition: color 0.3s ease;
   }
 
   .contact-content {
@@ -121,10 +128,10 @@ export default {
       textarea {
         width: 100%;
         padding: $spacing-medium;
-        background-color: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(78, 204, 163, 0.2);
+        background-color: var(--card-bg);
+        border: 1px solid var(--card-border);
         border-radius: 0.5rem;
-        color: $text-color;
+        color: var(--text-color);
         font-family: $font-family;
         font-size: 1rem;
         transition: all 0.3s ease;
@@ -132,11 +139,12 @@ export default {
         &:focus {
           outline: none;
           border-color: $secondary-color;
-          background-color: rgba(255, 255, 255, 0.08);
+          background-color: rgba(78, 204, 163, 0.08);
         }
 
         &::placeholder {
-          color: rgba(224, 224, 224, 0.5);
+          color: var(--text-secondary);
+          opacity: 0.7;
         }
       }
 
@@ -174,9 +182,9 @@ export default {
       align-items: flex-start;
       gap: $spacing-medium;
       padding: $spacing-medium;
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: var(--card-bg);
       border-radius: 0.5rem;
-      border: 1px solid rgba(78, 204, 163, 0.1);
+      border: 1px solid var(--card-border);
       transition: all 0.3s ease;
 
       &:hover {
@@ -201,7 +209,7 @@ export default {
         }
 
         a {
-          color: $text-color;
+          color: var(--text-color);
           transition: color 0.3s ease;
 
           &:hover {
@@ -210,7 +218,8 @@ export default {
         }
 
         p {
-          color: rgba(224, 224, 224, 0.7);
+          color: var(--text-secondary);
+          transition: color 0.3s ease;
         }
       }
     }

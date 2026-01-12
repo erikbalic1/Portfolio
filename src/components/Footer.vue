@@ -35,12 +35,13 @@ export default {
 
 .footer {
   flex-shrink: 0;
-  background-color: rgba(26, 26, 26, 0.2);
+  background-color: var(--footer-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: white;
+  color: var(--text-color);
   padding: $spacing-large;
   margin-top: auto;
+  transition: background-color 0.3s ease, color 0.3s ease;
 
   .footer-content {
     display: grid;
@@ -60,10 +61,11 @@ export default {
   .footer-column {
     p {
       margin: 0;
-      color: rgba(224, 224, 224, 0.7);
+      color: var(--text-secondary);
+      transition: color 0.3s ease;
 
       strong {
-        color: $text-color;
+        color: var(--text-color);
       }
     }
 

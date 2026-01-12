@@ -15,18 +15,33 @@
       </div>
 
       <!-- Desktop Navigation -->
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <!-- Theme Toggle Switch (Desktop) -->
+        <div class="theme-toggle" @click="toggleTheme" :class="{ 'light': !isDarkMode }">
+          <div class="toggle-dot"></div>
+        </div>
+      </div>
 
       <!-- Mobile Menu -->
       <div class="mobile-menu" :class="{ open: isMenuOpen }">
         <ul class="mobile-nav-links">
           <li v-for="(link, index) in navLinks" :key="index" :style="{ animationDelay: `${index * 0.1}s` }">
             <a :href="link.href" @click="toggleMenu">{{ link.text }}</a>
+          </li>
+          <li class="theme-toggle-mobile" :style="{ animationDelay: `${navLinks.length * 0.1}s` }">
+            <div class="theme-toggle-wrapper">
+              <span class="theme-label">{{ isDarkMode ? 'Dark Mode' : 'Light Mode' }}</span>
+              <div class="theme-toggle-switch" @click="toggleTheme" :class="{ 'light': !isDarkMode }">
+                <div class="toggle-dot"></div>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
@@ -40,6 +55,7 @@ export default {
   data() {
     return {
       isMenuOpen: false,
+      isDarkMode: true,
       navLinks: [
         { text: 'Home', href: '#home' },
         { text: 'About', href: '#about' },
@@ -48,9 +64,24 @@ export default {
       ]
     }
   },
+  mounted() {
+    // Always start in dark mode
+    this.isDarkMode = true;
+    document.documentElement.classList.add('dark');
+  },
   methods: {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
+    },
+    toggleTheme() {
+      this.isDarkMode = !this.isDarkMode;
+      if (this.isDarkMode) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      }
     }
   }
 }
@@ -60,7 +91,7 @@ export default {
 @import '../assets/styles/variables.scss';
 
 .header {
-  background-color: rgba(26, 26, 26, 0.8);
+  background-color: var(--header-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: $spacing-medium $spacing-large;
@@ -70,9 +101,10 @@ export default {
   right: 0;
   width: 100%;
   z-index: 9999;
+  transition: background-color 0.3s ease;
 
   @media (max-width: $breakpoint-mobile) {
-    background-color: rgba(26, 26, 26, 0.95);
+    background-color: var(--header-bg);
   }
 
   .nav {
@@ -83,14 +115,25 @@ export default {
     margin: 0 auto;
 
     .logo {
-      color: white;
+      color: var(--text-color);
       font-size: $font-size-large;
       font-weight: bold;
       z-index: 10001;
       position: relative;
+      transition: color 0.3s ease;
 
       .highlight {
         color: $secondary-color;
+      }
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: $spacing-medium;
+
+      @media (max-width: $breakpoint-mobile) {
+        display: none;
       }
     }
 
@@ -100,10 +143,11 @@ export default {
       gap: $spacing-large;
 
       a {
-        color: white;
+        color: var(--text-color);
         position: relative;
         padding-bottom: 5px;
         font-size: $font-size-medium;
+        transition: color 0.3s ease;
         
         &::after {
           content: '';
@@ -126,10 +170,6 @@ export default {
           }
         }
       }
-
-      @media (max-width: $breakpoint-mobile) {
-        display: none;
-      }
     }
 
     // Hamburger Menu
@@ -148,7 +188,7 @@ export default {
       span {
         width: 25px;
         height: 3px;
-        background-color: white;
+        background-color: var(--text-color);
         transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         border-radius: 3px;
         transform-origin: center;
@@ -170,6 +210,46 @@ export default {
       }
     }
 
+    // Theme Toggle Switch
+    .theme-toggle {
+      position: relative;
+      width: 50px;
+      height: 26px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 13px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid rgba(78, 204, 163, 0.3);
+
+      &:hover {
+        border-color: rgba(78, 204, 163, 0.5);
+      }
+
+      &.light {
+        background: rgba(78, 204, 163, 0.2);
+
+        .toggle-dot {
+          transform: translateX(24px);
+        }
+      }
+
+      .toggle-dot {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 18px;
+        height: 18px;
+        background: $secondary-color;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      @media (max-width: $breakpoint-mobile) {
+        display: none;
+      }
+    }
+
     // Mobile Menu
     .mobile-menu {
       position: fixed;
@@ -178,10 +258,10 @@ export default {
       width: 70%;
       max-width: 300px;
       height: 100vh;
-      background-color: rgba(26, 26, 26, 0.98);
+      background-color: var(--header-bg);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      transition: left 0.4s ease;
+      transition: left 0.4s ease, background-color 0.3s ease;
       padding-top: 100px;
       z-index: 9998;
 
@@ -203,10 +283,11 @@ export default {
 
           a {
             display: block;
-            color: white;
+            color: var(--text-color);
             font-size: 1.25rem;
             padding: $spacing-medium 0;
             position: relative;
+            transition: color 0.3s ease;
 
             &::after {
               content: '';
@@ -234,6 +315,60 @@ export default {
 
       &.open .mobile-nav-links li {
         animation: fadeInSlide 0.5s ease forwards;
+      }
+
+      .theme-toggle-mobile {
+        margin-top: $spacing-medium;
+        padding-top: $spacing-medium;
+        border-top: 1px solid rgba(78, 204, 163, 0.2);
+
+        .theme-toggle-wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: $spacing-small 0;
+
+          .theme-label {
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: color 0.3s ease;
+          }
+
+          .theme-toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(78, 204, 163, 0.3);
+
+            &:hover {
+              border-color: rgba(78, 204, 163, 0.5);
+            }
+
+            &.light {
+              background: rgba(78, 204, 163, 0.2);
+
+              .toggle-dot {
+                transform: translateX(24px);
+              }
+            }
+
+            .toggle-dot {
+              position: absolute;
+              top: 2px;
+              left: 2px;
+              width: 18px;
+              height: 18px;
+              background: $secondary-color;
+              border-radius: 50%;
+              transition: transform 0.3s ease;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+          }
+        }
       }
     }
   }

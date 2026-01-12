@@ -90,7 +90,8 @@ export default {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 4rem;
-    color: $text-color;
+    color: var(--text-color);
+    transition: color 0.3s ease;
 
     @media (max-width: $breakpoint-mobile) {
       font-size: 2rem;
@@ -104,10 +105,10 @@ export default {
   }
 
   .project-card {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--card-bg);
     border-radius: 1rem;
     overflow: hidden;
-    border: 1px solid rgba(78, 204, 163, 0.1);
+    border: 1px solid var(--card-border);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     cursor: pointer;
@@ -191,13 +192,15 @@ export default {
       h3 {
         font-size: 1.5rem;
         margin-bottom: $spacing-small;
-        color: $text-color;
+        color: var(--text-color);
+        transition: color 0.3s ease;
       }
 
       p {
-        color: rgba(224, 224, 224, 0.7);
+        color: var(--text-secondary);
         margin-bottom: $spacing-medium;
         line-height: 1.6;
+        transition: color 0.3s ease;
       }
 
       .project-tags {
