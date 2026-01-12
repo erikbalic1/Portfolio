@@ -68,8 +68,19 @@ export default {
     // Always start in dark mode
     this.isDarkMode = true;
     document.documentElement.classList.add('dark');
+    
+    // Close mobile menu on resize to desktop
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.handleResize);
   },
   methods: {
+    handleResize() {
+      if (window.innerWidth > 768 && this.isMenuOpen) {
+        this.isMenuOpen = false;
+      }
+    },
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
